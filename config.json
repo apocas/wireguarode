@@ -1,0 +1,52 @@
+{
+  "ips": [
+    "192.168.1.1",
+    "192.168.1.2"
+  ],
+  "private_key": "XXXXXXXXXX",
+  "listen_port": 12345,
+  "interfaces": [
+    "eth0",
+    "eth1"
+  ],
+  "groups": [
+    {
+      "name": "admin",
+      "pairs": [
+        {
+          "ip": "192.168.1.1",
+          "port": "80"
+        }
+      ]
+    },
+    {
+      "name": "xpto",
+      "pairs": [
+        {
+          "ip": "192.168.1.2",
+          "port": "22"
+        }
+      ]
+    }
+  ],
+  "peers": [
+    {
+      "name": "John Doe1",
+      "ips": [
+        "192.168.20.1",
+        "192.168.20.2"
+      ],
+      "public_key": "YYYYYYYYYY",
+      "group": "xpto"
+    },
+    {
+      "name": "John Doe2",
+      "ips": [
+        "192.168.20.3",
+        "192.168.20.4"
+      ],
+      "public_key": "HHHHHHHHHHH",
+      "group": "admin"
+    }
+  ]
+}

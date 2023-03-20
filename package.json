@@ -1,0 +1,26 @@
+{
+  "name": "wireguarode",
+  "version": "1.0.0",
+  "description": "Wireguard management tool with ACLs and 2FA",
+  "main": "main.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {
+    "chai": "~4.2.0",
+    "mocha": "^10.2.0"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha.js -R spec --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apocas/wireguarode.git"
+  },
+  "author": "Pedro Dias <petermdias@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/apocas/wireguarode/issues"
+  },
+  "homepage": "https://github.com/apocas/wireguarode#readme"
+}
