@@ -108,3 +108,4 @@ output/*.conf
 output/*.json
 
 .DS_Store
+output/qrcode.png
