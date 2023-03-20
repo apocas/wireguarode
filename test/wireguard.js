@@ -1,4 +1,5 @@
 const { expect } = require('chai');
+var QRCode = require('qrcode');
 var config = require('./config');
 
 var Wireguard = require('../lib/wireguard');
@@ -14,7 +15,10 @@ describe('Wireguard', function () {
       var urlt = wireguard.generateQRcode(peer);
       console.log(urlt);
 
-      done();
+      QRCode.toFile('./output/qrcode.png', urlt, function (err) {
+        if (err) throw err
+        done();
+      })
     });
 
     it('should generate a valid wireguard configuration', function (done) {
