@@ -31,24 +31,22 @@
   ],
   "peers": [
     {
-      "name": "John Doe1",
+      "identifier": "john.doe1@rainbow",
       "ips": [
         "192.168.20.1",
         "192.168.20.2"
       ],
       "public_key": "YYYYYYYYYY",
-      "group": "xpto",
-      "2fa": true
+      "group": "xpto"
     },
     {
-      "name": "John Doe2",
+      "identifier": "john.doe2@rainbow",
       "ips": [
         "192.168.20.3",
         "192.168.20.4"
       ],
       "public_key": "HHHHHHHHHHH",
-      "group": "admin",
-      "2fa": false
+      "group": "admin"
     }
   ]
 }

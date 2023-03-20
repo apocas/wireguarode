@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/apocas/wireguarode/issues"
   },
-  "homepage": "https://github.com/apocas/wireguarode#readme"
+  "homepage": "https://github.com/apocas/wireguarode#readme",
+  "dependencies": {
+    "otplib": "^12.0.1"
+  }
 }

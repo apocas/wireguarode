@@ -105,5 +105,6 @@ dist
 
 output/*.sh
 output/*.conf
+output/*.json
 
 .DS_Store
