@@ -14,7 +14,7 @@
       "name": "admin",
       "pairs": [
         {
-          "ip": "192.168.1.1",
+          "destination": "192.168.1.1",
           "port": "80"
         }
       ]
@@ -23,7 +23,7 @@
       "name": "xpto",
       "pairs": [
         {
-          "ip": "192.168.1.2",
+          "destination": "192.168.1.2",
           "port": "22"
         }
       ]
@@ -37,7 +37,8 @@
         "192.168.20.2"
       ],
       "public_key": "YYYYYYYYYY",
-      "group": "xpto"
+      "group": "xpto",
+      "2fa": true
     },
     {
       "name": "John Doe2",
@@ -46,7 +47,8 @@
         "192.168.20.4"
       ],
       "public_key": "HHHHHHHHHHH",
-      "group": "admin"
+      "group": "admin",
+      "2fa": false
     }
   ]
 }
