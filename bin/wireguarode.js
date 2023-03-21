@@ -40,6 +40,67 @@ program.command('expire')
   });
 
 
+const groupcmd = program.command('group')
+
+groupcmd.command('add')
+  .description('Add group')
+  .argument('<identifier>', 'group identifier')
+  .action((identifier) => {
+    var group = wireguard.findGroup(identifier);
+    if (group) {
+      console.log('Group already exists');
+    } else {
+      wireguard.addGroup(new Group(identifier));
+      console.log('Group added');
+    }
+  });
+
+groupcmd.command('remove')
+  .description('Remove group')
+  .argument('<identifier>', 'group identifier')
+  .action((identifier) => {
+    var group = wireguard.findGroup(identifier);
+    if (group) {
+      wireguard.removeGroup(group);
+      console.log('Group removed');
+    } else {
+      console.log('Group not found');
+    }
+  });
+
+groupcmd.command('adddestination')
+  .description('Add group destination')
+  .argument('<identifier>', 'group identifier')
+  .argument('<destination>', 'IP destination')
+  .argument('<port>', 'port')
+  .argument('<protocol>', 'protocol')
+  .action((identifier, destination, port, protocol) => {
+    var group = wireguard.findGroup(identifier);
+    if (group) {
+      group.addDestination(destination, port, protocol);
+      console.log('Group destination added');
+    } else {
+      console.log('Group not found');
+    }
+  });
+
+groupcmd.command('removedestination')
+  .description('Remove group destination')
+  .argument('<identifier>', 'group identifier')
+  .argument('<destination>', 'IP destination')
+  .argument('<port>', 'port')
+  .argument('<protocol>', 'protocol')
+  .action((identifier, destination, port, protocol) => {
+    var group = wireguard.findGroup(identifier);
+    if (group) {
+      group.removePair(destination, port, protocol);
+      console.log('Group destination removed');
+    } else {
+      console.log('Group not found');
+    }
+  });
+
+
 const peercmd = program.command('peer')
 
 peercmd.command('activate')
@@ -85,6 +146,5 @@ peercmd.command('secret')
       console.log('Peer not found');
     }
   });
-
 
 program.parse();

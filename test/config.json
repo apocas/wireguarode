@@ -15,19 +15,21 @@
   "groups": [
     {
       "name": "admin",
-      "pairs": [
+      "destinations": [
         {
           "destination": "192.168.1.1",
-          "port": "80"
+          "port": "80",
+          "protocol": "tcp"
         }
       ]
     },
     {
       "name": "xpto",
-      "pairs": [
+      "destinations": [
         {
           "destination": "192.168.1.2",
-          "port": "22"
+          "port": "22",
+          "protocol": "tcp"
         }
       ]
     }
