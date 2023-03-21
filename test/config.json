@@ -1,5 +1,6 @@
 {
-  "path": "/etc/wireguard",
+  "path": "./output",
+  "debug": true,
   "private_key": "XXXXXXXXXX",
   "listen_port": 12345,
   "enforce2fa": false,

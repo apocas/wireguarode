@@ -2,9 +2,9 @@
   "name": "wireguarode",
   "version": "1.0.0",
   "description": "Wireguard management tool with ACLs and 2FA",
-  "main": "main.js",
-  "directories": {
-    "lib": "lib"
+  "main": "./lib/wireguard.js",
+  "bin": {
+    "wireguarode": "./bin/wireguarode"
   },
   "devDependencies": {
     "chai": "~4.2.0",
@@ -24,7 +24,15 @@
   },
   "homepage": "https://github.com/apocas/wireguarode#readme",
   "dependencies": {
+    "commander": "^10.0.0",
     "otplib": "^12.0.1",
     "qrcode": "^1.5.1"
-  }
+  },
+  "keywords": [
+    "wireguard",
+    "vpn",
+    "acl",
+    "totp",
+    "2fa"
+  ]
 }
