@@ -93,7 +93,7 @@ groupcmd.command('removedestination')
   .action((identifier, destination, port, protocol) => {
     var group = wireguard.findGroup(identifier);
     if (group) {
-      group.removePair(destination, port, protocol);
+      group.removeDestination(destination, port, protocol);
       console.log('Group destination removed');
     } else {
       console.log('Group not found');
