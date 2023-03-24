@@ -1,57 +1,55 @@
 {
-  "path": "./output",
+  "addresses": [
+    "192.168.1.1"
+  ],
+  "enforce2fa": false,
   "debug": true,
+  "path": "./output",
   "private_key": "XXXXXXXXXX",
   "listen_port": 12345,
-  "enforce2fa": false,
-  "ips": [
-    "192.168.1.1",
-    "192.168.1.2"
-  ],
   "interfaces": [
     "eth0",
     "eth1"
   ],
-  "groups": [
-    {
-      "name": "admin",
-      "destinations": [
-        {
-          "destination": "192.168.1.1",
-          "port": "80",
-          "protocol": "tcp"
-        }
-      ]
-    },
-    {
-      "name": "xpto",
-      "destinations": [
-        {
-          "destination": "192.168.1.2",
-          "port": "22",
-          "protocol": "tcp"
-        }
-      ]
-    }
-  ],
   "peers": [
     {
       "identifier": "john.doe1@rainbow",
-      "ips": [
-        "192.168.20.1",
-        "192.168.20.2"
+      "addresses": [
+        "192.168.20.1"
       ],
       "public_key": "YYYYYYYYYY",
       "group": "xpto"
     },
     {
       "identifier": "john.doe2@rainbow",
-      "ips": [
-        "192.168.20.3",
-        "192.168.20.4"
+      "addresses": [
+        "192.168.20.3"
       ],
       "public_key": "HHHHHHHHHHH",
       "group": "admin"
+    }
+  ],
+  "groups": [
+    {
+      "name": "admin",
+      "destinations": [
+        "tcp://192.168.1.1:80",
+        "tcp://192.168.1.1:443"
+      ]
+    },
+    {
+      "name": "admin2",
+      "destinations": [
+        "tcp://192.168.1.10:443",
+        "tcp://192.168.1.2:22",
+        "tcp://192.168.1.4:22"
+      ]
+    },
+    {
+      "name": "xpto",
+      "destinations": [
+        "tcp://192.168.1.2:22"
+      ]
     }
   ]
 }

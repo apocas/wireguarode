@@ -2,16 +2,33 @@
 
 const { Command } = require('commander');
 var Wireguard = require('../lib/wireguard');
+var Group = require('../lib/group');
 
 const program = new Command();
 var wireguard = new Wireguard();
 
+var config;
 try {
-  var config = require(process.env.CONFIG || '/etc/wireguard/config');
+  config = require(process.env.CONFIG);
+} catch (error) {
+  try {
+    config = require('/etc/wireguard/config');
+  } catch (error) {
+    try {
+      config = require('../test/config');
+    } catch (error) {
+      console.log('Error reading configuration file...');
+    }
+  }
+}
+
+try {
   wireguard.loadConfig(config);
 } catch (error) {
-  console.log('Error loading configuration file');
+  console.log(error)
+  console.log('Error loading configuration file...');
 }
+
 
 program
   .name('wireguarode')
@@ -20,21 +37,21 @@ program
 
 program.command('save')
   .description('Save configuration file')
-  .option('--path', 'path to save configuration file')
+  .option('--path <path>', 'path to save configuration file')
   .action((options) => {
     wireguard.saveConfig(options.path);
   });
 
 program.command('generate')
   .description('Generate configuration files')
-  .option('--path', 'path to save configuration files')
+  .option('--path <path>', 'path to save configuration files')
   .action((options) => {
     wireguard.generateFiles(options.path);
   });
 
 program.command('expire')
   .description('Expire peers')
-  .option('--minutes', 'maximum minutes since last login, 24hours default')
+  .option('--minutes <minutes>', 'maximum minutes since last login, 24hours default')
   .action((options) => {
     wireguard.expirePeers();
   });
@@ -50,8 +67,11 @@ groupcmd.command('add')
     if (group) {
       console.log('Group already exists');
     } else {
-      wireguard.addGroup(new Group(identifier));
+      wireguard.addGroup({
+        "name": identifier
+      });
       console.log('Group added');
+      wireguard.saveConfig();
     }
   });
 
@@ -63,6 +83,7 @@ groupcmd.command('remove')
     if (group) {
       wireguard.removeGroup(group);
       console.log('Group removed');
+      wireguard.saveConfig();
     } else {
       console.log('Group not found');
     }
@@ -71,14 +92,13 @@ groupcmd.command('remove')
 groupcmd.command('adddestination')
   .description('Add group destination')
   .argument('<identifier>', 'group identifier')
-  .argument('<destination>', 'IP destination')
-  .argument('<port>', 'port')
-  .argument('<protocol>', 'protocol')
-  .action((identifier, destination, port, protocol) => {
+  .argument('<destination>', 'Destination')
+  .action((identifier, destination) => {
     var group = wireguard.findGroup(identifier);
     if (group) {
-      group.addDestination(destination, port, protocol);
+      group.addDestination(destination);
       console.log('Group destination added');
+      wireguard.saveConfig();
     } else {
       console.log('Group not found');
     }
@@ -87,14 +107,13 @@ groupcmd.command('adddestination')
 groupcmd.command('removedestination')
   .description('Remove group destination')
   .argument('<identifier>', 'group identifier')
-  .argument('<destination>', 'IP destination')
-  .argument('<port>', 'port')
-  .argument('<protocol>', 'protocol')
-  .action((identifier, destination, port, protocol) => {
+  .argument('<destination>', 'Destination')
+  .action((identifier, destination) => {
     var group = wireguard.findGroup(identifier);
     if (group) {
-      group.removeDestination(destination, port, protocol);
+      group.removeDestination(destination);
       console.log('Group destination removed');
+      wireguard.saveConfig();
     } else {
       console.log('Group not found');
     }
@@ -110,7 +129,7 @@ peercmd.command('activate')
   .action((identifier, code) => {
     var peer = wireguard.findPeer(identifier);
     if (peer) {
-      var logged = wireguard.activatePeer(peer, code);
+      var logged = peer.activate(code);
       if (logged) {
         console.log('Peer activated');
       } else {
@@ -127,7 +146,7 @@ peercmd.command('deactivate')
   .action((identifier) => {
     var peer = wireguard.findPeer(identifier);
     if (peer) {
-      wireguard.deactivatePeer(peer);
+      peer.deactivate();
       console.log('Peer deactivated');
     } else {
       console.log('Peer not found');
@@ -140,8 +159,9 @@ peercmd.command('secret')
   .action((identifier) => {
     var peer = wireguard.findPeer(identifier);
     if (peer) {
-      var secret = wireguard.generateSecret(peer);
+      var secret = peer.generate2FA();
       console.log('Secret generated: ' + secret);
+      wireguard.saveConfig();
     } else {
       console.log('Peer not found');
     }

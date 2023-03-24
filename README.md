@@ -70,7 +70,7 @@ Peer Commands:
 
 - `activate`: Activate a peer using a TOTP code.
 - `deactivate`: Deactivate a peer.
-- `secret`: Generate a secret for a peer.
+- `secret`: Activate 2FA for a peer.
 
 To use a command, pass it as an argument followed by the configuration file:
 
@@ -89,9 +89,8 @@ Wireguarode uses a JSON file for its configuration. Here's an example configurat
   "private_key": "XXXXXXXXXX",
   "listen_port": 12345,
   "enforce2fa": false,
-  "ips": [
-    "192.168.1.1",
-    "192.168.1.2"
+  "addresses": [
+    "192.168.1.1"
   ],
   "interfaces": [
     "eth0",
@@ -122,18 +121,16 @@ Wireguarode uses a JSON file for its configuration. Here's an example configurat
   "peers": [
     {
       "identifier": "john.doe1@rainbow",
-      "ips": [
-        "192.168.20.1",
-        "192.168.20.2"
+      "addresses": [
+        "192.168.20.1"
       ],
       "public_key": "YYYYYYYYYY",
       "group": "xpto"
     },
     {
       "identifier": "john.doe2@rainbow",
-      "ips": [
-        "192.168.20.3",
-        "192.168.20.4"
+      "addresses": [
+        "192.168.20.3"
       ],
       "public_key": "HHHHHHHHHHH",
       "group": "admin"
