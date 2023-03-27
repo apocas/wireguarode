@@ -1,6 +1,6 @@
 # Wireguarode
 
-* Wireguarode is a tool designed manage and deploy Wireguard installations supporting ACLs and 2FA (TOTP) peer authentication.
+* Wireguarode allows to easily manage a Wireguard installation with ACLs and 2FA (TOTP) peer authentication.
 * It works with a main JSON file as input/config, allowing to allocate peers to groups, manage ACLs, and enable 2FA TOTP authentication.
 * Wireguarode can be used both as a library and a CLI tool.
 * Leverages `iptables` to acomplish all this.
