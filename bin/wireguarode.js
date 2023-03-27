@@ -47,6 +47,7 @@ program.command('reload')
   .description('Reload Wireguard')
   .action((options) => {
     wireguard.saveConfig();
+    wireguard.generateFiles();
     wireguard.reload();
   });
 
