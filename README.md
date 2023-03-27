@@ -21,7 +21,7 @@ To install Wireguarode, run the following command:
 npm install -g wireguarode
 ```
 
-You need to have Wireguard already installed, `wireguarode` defaults to `/etc/wireguard/...` but you are to specify the path.
+You need to have Wireguard already installed, `wireguarode` defaults to `/etc/wireguard/...` but it's possible to specify a different path.
 
 ## Usage
 
@@ -37,7 +37,7 @@ wireguarode peer --help
 
 #### CLI Commands
 
-Wireguarode supports several CLI commands for different operations. Examples of available commands include:
+Wireguarode supports several CLI commands for different operations:
 
 - `save`: Save the configuration file to a specified optional path.
 - `generate`: Generate Wireguard configuration files and save them to a specified path.
