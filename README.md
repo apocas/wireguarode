@@ -3,7 +3,7 @@
 * Wireguarode is a tool designed manage and deploy Wireguard installations supporting ACLs and 2FA (TOTP) peer authentication.
 * It works with a main JSON file as input/config, allowing to allocate peers to groups, manage ACLs, and enable 2FA TOTP authentication.
 * Wireguarode can be used both as a library and a CLI tool.
-* Leverages iptables to acomplish all this.
+* Leverages `iptables` to acomplish all this.
 
 ## Features
 
@@ -97,43 +97,22 @@ wireguard.loadConfig(config);
 
 ## Configuration
 
-Wireguarode uses a JSON file for its configuration. Here's an example configuration:
+* Wireguarode uses a JSON file for its configuration.
+* The following configuration will automatically generate the files that are in the `output_example` folder.
 
 ```json
 {
-  "path": "./output",
-  "debug": true,
-  "private_key": "XXXXXXXXXX",
-  "listen_port": 12345,
-  "enforce2fa": false,
   "addresses": [
     "192.168.1.1"
   ],
+  "enforce2fa": false,
+  "debug": true,
+  "path": "./output",
+  "private_key": "XXXXXXXXXX",
+  "listen_port": 12345,
   "interfaces": [
     "eth0",
     "eth1"
-  ],
-  "groups": [
-    {
-      "name": "admin",
-      "destinations": [
-        {
-          "destination": "192.168.1.1",
-          "port": "80",
-          "protocol": "tcp"
-        }
-      ]
-    },
-    {
-      "name": "xpto",
-      "destinations": [
-        {
-          "destination": "192.168.1.2",
-          "port": "22",
-          "protocol": "tcp"
-        }
-      ]
-    }
   ],
   "peers": [
     {
@@ -151,6 +130,29 @@ Wireguarode uses a JSON file for its configuration. Here's an example configurat
       ],
       "public_key": "HHHHHHHHHHH",
       "group": "admin"
+    }
+  ],
+  "groups": [
+    {
+      "name": "admin",
+      "destinations": [
+        "tcp://192.168.1.1:80",
+        "tcp://192.168.1.1:443"
+      ]
+    },
+    {
+      "name": "admin2",
+      "destinations": [
+        "tcp://192.168.1.10:443",
+        "tcp://192.168.1.2:22",
+        "tcp://192.168.1.4:22"
+      ]
+    },
+    {
+      "name": "xpto",
+      "destinations": [
+        "tcp://192.168.1.2:22"
+      ]
     }
   ]
 }
