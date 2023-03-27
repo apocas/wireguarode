@@ -1,8 +1,9 @@
 # Wireguarode
 
-Wireguarode is a tool designed manage and deploy Wireguard installations supporting ACLs and 2FA (TOTP) peer authentication.
-It works with a main JSON file as input/config, allowing to allocate peers to groups, manage ACLs, and enable 2FA TOTP authentication.
-Wireguarode can be used both as a library and a CLI tool, offering flexibility and seamless integration into your existing workflow.
+* Wireguarode is a tool designed manage and deploy Wireguard installations supporting ACLs and 2FA (TOTP) peer authentication.
+* It works with a main JSON file as input/config, allowing to allocate peers to groups, manage ACLs, and enable 2FA TOTP authentication.
+* Wireguarode can be used both as a library and a CLI tool.
+* Leverages iptables to acomplish all this.
 
 ## Features
 
@@ -17,6 +18,7 @@ Wireguarode can be used both as a library and a CLI tool, offering flexibility a
 To install Wireguarode, run the following command:
 
 ```bash
+# defaults to /etc/wiguard/...
 npm install -g wireguarode
 ```
 
@@ -58,7 +60,7 @@ To use a command, pass it as an argument followed by the configuration file:
 wireguarode <command> [arguments]
 ```
 
-#### Example
+#### Example use case
 
 * Create a group of peers called "operator" that can only access a specific IP address and port.
 * Add a new peer that belongs to this group.
