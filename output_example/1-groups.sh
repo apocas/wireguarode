@@ -15,3 +15,7 @@ iptables -A wireguarode -d tcp://192.168.1.4:22 -p icmp -j admin2
 # xpto
 iptables -A wireguarode -d tcp://192.168.1.2:22 -p 22 --dport 22 -j xpto
 iptables -A wireguarode -d tcp://192.168.1.2:22 -p icmp -j xpto
+
+iptables -A wireguarode -j god
+
+iptables -A wireguarode -j REJECT
