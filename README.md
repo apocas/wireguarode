@@ -107,7 +107,7 @@ wireguard.loadConfig(config);
   ],
   "enforce2fa": false,
   "debug": true,
-  "path": "./output",
+  "path": "/etc/wireguard",
   "private_key": "XXXXXXXXXX",
   "listen_port": 12345,
   "interfaces": [
