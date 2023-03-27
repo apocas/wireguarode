@@ -35,6 +35,14 @@ wireguarode group --help
 wireguarode peer --help
 ```
 
+### 2FA
+
+```bash
+wireguarode peer secret john.doe1@rainbow
+
+Secret generated: otpauth://totp/wireguarode:john.doe1%40rainbow?secret=XXXXXXXXXXXX&period=30&digits=6&algorithm=SHA1&issuer=wireguarode
+```
+
 #### CLI Commands
 
 Wireguarode supports several CLI commands for different operations:
