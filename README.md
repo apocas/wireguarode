@@ -31,6 +31,8 @@ To use Wireguarode as a CLI tool, simply provide the path to your JSON configura
 
 ```bash
 wireguarode --help
+wireguarode group --help
+wireguarode peer --help
 ```
 
 #### CLI Commands

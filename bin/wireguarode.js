@@ -175,14 +175,14 @@ peercmd.command('secret')
     }
   });
 
-program.command('expire')
+peercmd.command('expire')
   .description('Expire peers')
   .option('--minutes <minutes>', 'maximum minutes since last login, 24hours default')
   .action((options) => {
     wireguard.expirePeers(option.minutes);
   });
 
-program.command('add')
+peercmd.command('add')
   .description('Add peer')
   .option('--key <key>', 'maximum minutes since last login, 24hours default')
   .option('--address <address>', 'maximum minutes since last login, 24hours default')
