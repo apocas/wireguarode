@@ -52,14 +52,14 @@ program.command('reload')
 
 program.command('save')
   .description('Save configuration file')
-  .option('--path <path>', 'path to save configuration file')
+  .option('--path <path>', 'path to save Wireguarode configuration file')
   .action((options) => {
     wireguard.saveConfig(options.path);
   });
 
 program.command('generate')
   .description('Generate configuration files')
-  .option('--path <path>', 'path to save configuration files')
+  .option('--path <path>', 'path to generate Wireguard configuration files, defaults to /etc/wireguard')
   .action((options) => {
     wireguard.generateFiles(options.path);
   });
