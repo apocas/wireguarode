@@ -64,9 +64,9 @@ wireguarode <command> [arguments]
 * Add a new peer that belongs to this group.
 
 ```bash
-wireguarode addgroup operator
-wireguarode adddestination operator tcp://192.168.1.10:443
-wireguarode adddestination operator tcp://192.168.1.10:22
+wireguarode group add operator
+wireguarode group adddestination operator tcp://192.168.1.10:443
+wireguarode group adddestination operator tcp://192.168.1.10:22
 wireguarode peer add --identifier john.doe2@rainbow --key XXXXXXX --address 10.15.12.4 --group operator
 wireguarode reload
 ```
