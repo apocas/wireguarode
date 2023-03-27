@@ -65,13 +65,14 @@ wireguarode <command> [arguments]
 
 #### Example use case
 
-* Create a group of peers called "operator" that can only access a specific IP address and port.
-* Add a new peer that belongs to this group.
+* Create two groups of peers one called "operator" that can only access a specific IP address and port and an unrestricted one called "god".
+* Add a new peer that belongs to the operator group.
 
 ```bash
 wireguarode group add operator
 wireguarode group adddestination operator tcp://192.168.1.10:443
 wireguarode group adddestination operator tcp://192.168.1.10:22
+wireguarode group add god
 wireguarode peer add --identifier john.doe2@rainbow --key XXXXXXX --address 10.15.12.4 --group operator
 wireguarode reload
 ```
