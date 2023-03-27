@@ -1,6 +1,6 @@
 {
   "name": "wireguarode",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Wireguard management tool with ACLs and 2FA",
   "main": "./lib/wireguard.js",
   "bin": {
