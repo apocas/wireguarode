@@ -35,6 +35,21 @@ program
   .description('Wireguard with ACLs and TOTP 2FA')
   .version('1.0.0')
 
+
+program.command('restart')
+  .description('Restart Wireguard')
+  .action((options) => {
+    wireguard.saveConfig();
+    wireguard.restart();
+  });
+
+program.command('reload')
+  .description('Reload Wireguard')
+  .action((options) => {
+    wireguard.saveConfig();
+    wireguard.reload();
+  });
+
 program.command('save')
   .description('Save configuration file')
   .option('--path <path>', 'path to save configuration file')
