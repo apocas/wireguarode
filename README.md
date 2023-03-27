@@ -41,6 +41,8 @@ wireguarode peer --help
 wireguarode peer secret john.doe1@rainbow
 
 Secret generated: otpauth://totp/wireguarode:john.doe1%40rainbow?secret=XXXXXXXXXXXX&period=30&digits=6&algorithm=SHA1&issuer=wireguarode
+
+wireguarode reload
 ```
 
 #### CLI Commands
