@@ -49,13 +49,6 @@ program.command('generate')
     wireguard.generateFiles(options.path);
   });
 
-program.command('expire')
-  .description('Expire peers')
-  .option('--minutes <minutes>', 'maximum minutes since last login, 24hours default')
-  .action((options) => {
-    wireguard.expirePeers();
-  });
-
 
 const groupcmd = program.command('group')
 
@@ -165,6 +158,31 @@ peercmd.command('secret')
     } else {
       console.log('Peer not found');
     }
+  });
+
+program.command('expire')
+  .description('Expire peers')
+  .option('--minutes <minutes>', 'maximum minutes since last login, 24hours default')
+  .action((options) => {
+    wireguard.expirePeers(option.minutes);
+  });
+
+program.command('add')
+  .description('Add peer')
+  .option('--key <key>', 'maximum minutes since last login, 24hours default')
+  .option('--address <address>', 'maximum minutes since last login, 24hours default')
+  .option('--group <group>', 'maximum minutes since last login, 24hours default')
+  .option('--identifer <identifier>', 'maximum minutes since last login, 24hours default')
+  .action((options) => {
+    var pconfig = {
+      "identifier": options.identifier,
+      "addresses": [
+        options.address
+      ],
+      "public_key": options.key,
+      "group": options.group
+    }
+    wireguard.addPeer(pconfig);
   });
 
 program.parse();
