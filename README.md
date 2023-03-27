@@ -18,9 +18,10 @@
 To install Wireguarode, run the following command:
 
 ```bash
-# defaults to /etc/wiguard/...
 npm install -g wireguarode
 ```
+
+You need to have Wireguard already installed, `wireguarode` defaults to `/etc/wireguard/...` but you are to specify the path.
 
 ## Usage
 
